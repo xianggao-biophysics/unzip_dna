@@ -1,4 +1,4 @@
-# DNA Unzipping Curve Calculator (GPU version)  
+# DNA Unzipping Curve Calculator (GPU version, 10x faster than the CPU version)  
 
 Combined CUDA with the look-up table optimization (see the next section), it runs pretty fast and can finish the whole *E.coli*  genome in about a minute on my GeForce RTX 3070 Laptop.  
 
@@ -17,9 +17,9 @@ To batch-process sequence files in your own folder, use this command
 > main_gpu path/to/your/own/folder
 ```
 
-Result (I only showed the first 23 genes):  
+Result (I only showed the first 23 genes' results):  
 
-![image](other_data/Results of the first several genes.png)
+![](other_data/result_examples.png)
 
 Prediction vs Experiment:
 
@@ -44,7 +44,7 @@ $$F(z) = -kT\frac{\partial }{\partial z}\mathrm{ln}Z$$
 To calculate the force-extension curve, we need to obtain the energy $G(j,z)$ at every j and z. However, $G$ has a **non-analytical complex form**, while the scales of $j$ and $z$ are large (usually in a range of 1,000-10,000). Moreover, we need to calculate the unzipping traces for every gene in the genome. Even *E. Coli* has thousands of genes. Therefore, Calculation of $G$ for all $j$ and $z$ for all DNA sequences is better to be on a GPU.  
 
 
-# DNA Unzipping Curve Calculator (CPU version)  
+# DNA Unzipping Curve Calculator (CPU version, 1000x faster than the proof-of-concept program)  
 
 *At the current stage after my optimization, this program is 1,000-2,000 times faster than my proof-of-concept python code.*  
 
@@ -57,16 +57,16 @@ The build command should work on Windows and Linux:
 ```
 The lookup table size is controlled by macro **J_SIZE**. The larger the number, the more accurate the result. Increasing this number can significantly increase the compiling time.  
   
-For Windows OS, run **build_project.bat** to build with *additional options and testing*. For Linux user, ChatGPT should be able to translate the .bat file to a shell script. If the .bat file is ran successfully, you should see something like this:  
+For Windows OS, run **build_cpu.bat** to build with *additional options and testing*. For Linux user, ChatGPT should be able to translate the .bat file to a shell script. If the .bat file is ran successfully, you should see something like this:  
 ![image](other_data/tutorial.png)  
 The compile time is quite long if the look-up table size is big!  
 
 ## Do some tests using the example data
 
-A test sequence is provided (NEB_H5alpha_Accessory_colonization_factor_AcfD). You can run the executable on this example like this:  
+A test sequence is provided (e.g. Accessory colonization factor AcfD). You can run the executable on this example like this:  
 
 ```bash
->main.exe NEB_H5alpha_Accessory_colonization_factor_AcfD.txt out.csv
+>main_cpu.exe "NEB_H5alpha_Accessory colonization factor AcfD.txt" out.csv
 ```
 
 The first argument is input file name. The second argument determines the output file name and is optional.  

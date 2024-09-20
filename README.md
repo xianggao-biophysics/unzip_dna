@@ -55,7 +55,7 @@ where $G(j,z)$ is the total energy of the system. Force $F(z)$ can be obtained f
 
 $$F(z) = -kT\frac{\partial }{\partial z}\mathrm{ln}Z$$
 
-To calculate the force-extension curve, we need to obtain the energy $G(j,z)$ at every j and z. However, $G$ has a **non-analytical complex form**, while the scales of $j$ and $z$ are large (usually in a range of 1,000-10,000). Moreover, we need to calculate the unzipping traces for every gene in the genome. Even *E. Coli* has thousands of genes. Therefore, calculation of $G$ for all $j$ and $z$ for all DNA sequences is better to be on a GPU.  
+To calculate the force-extension curve, we need to obtain the energy $G(j,z)$ at every j and z. However, the calculation of $G$ is time-consuming, and the scales of $j$ and $z$ are large (usually in a range of 1,000-10,000). Moreover, we need to calculate the unzipping traces for every gene in the genome. Even *E. Coli* has thousands of genes, so this is a perfect task for GPU.  
 
 ### Instructions to Use (with Example Data)  
 

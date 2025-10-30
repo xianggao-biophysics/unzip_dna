@@ -14,7 +14,7 @@
 #include <queue>
 #include <chrono>
 // constants.h define "NTHREAD", this value is used here and the .dll source code
-#include "../include/constants.h"
+#include "constants.h"
 /*
 // There's no need to polish further, I am brain bleeding now.
 #include "../include/ThreadPool.h"//https://github.com/progschj/ThreadPool
